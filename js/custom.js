@@ -15,66 +15,100 @@ for(const seat of allSeat){
         const p = document.createElement('p');
         p.innerText = seatIn;
         const p2 = document.createElement('p');
-        p2.innerText = 'economy';
+        p2.innerText = 'Economy';
         const h5 = document.createElement('h5');
-        h5.innerText = 500;
+        h5.innerText = cost;
 
         li.appendChild(p);
         li.appendChild(p2);
         li.appendChild(h5);
-
-       
+     
         seatShortPrice.appendChild(li);
 
-        const totalPrice = document.getElementById('total-price').innerText;
-         console.log(typeof totalPrice)
+        const seatLeftCount = getSeatLeft('seat-left');
+        const seatUpdate = seatLeftCount - 1;
 
-       
-       setInnerText('seat-count', count)       
+        setSeatLeft('seat-left', seatUpdate);
+
+
+        
+        let getOutSeatText = document.getElementById('seat-count'); 
+        let getOutSeat = getOutSeatText.innerText;
+        let getOut = parseInt(getOutSeat)
+
+        if(getOut > 3){
+            alert('you are not get More seat')
+            
+        }
+        
+
+        
+        setBackgroundColor(event)
+        totalCost('total-price', cost )
+        grandTotalCost('grand-total', cost );        
+       setInnerText('seat-count', count);   
+    //    setBackgroundColor(allSeat) 
+    showSuccessSection('success-hidden', event)
+      
     });
     
 }
 
+function totalCost(id, value){
+    const totalPrice = document.getElementById(id).innerText;
+    const convertedTotalPrice = parseInt(totalPrice);
+    const sum = convertedTotalPrice + value;
+    setInnerText(id, sum); 
+}
+
+function grandTotalCost(id, value){
+    const totalPrice = document.getElementById(id).innerText;
+    const convertedTotalPrice = parseInt(totalPrice);
+    const sum2 = convertedTotalPrice + value;
+    setInnerText(id, sum2); 
+}
+
 function setInnerText(id, value){
-    document.getElementById(id).innerText = value;
+    document.getElementById(id).innerText = value;     
+}
+
+function setBackgroundColor(event){
+    const setBackgroundColor = event.target;
+    setBackgroundColor.style.backgroundColor = '#1dd100';
+    setBackgroundColor.classList.add('text-white');
+}
+
+function getSeatLeft(event){
+    const seatLeftNumber = document.getElementById(event);
+    const leftSeatText = seatLeftNumber.innerText; 
+        const seatLeft = parseInt(leftSeatText);
+        return seatLeft;
+}
+function setSeatLeft(event, value){
+    const seatNumberLeft = document.getElementById(event);
+    seatNumberLeft.innerText = value;
         
 }
 
 
+const nextButton = document.getElementById('next-success');
+const successButton = document.getElementById('success-hidden');
 
-// function handleKeyEvent(){
-    
-
-//     const mySeat = getRandomSeat()
-//     console.log(mySeat)
-//     setBackgroundColor(mySeat)
-    
-// }
-
-function getRandomSeat(){
-    const randomSeat = ['A1', 'A2', 'A3','A4', 'B1', 'B2', 'B3', 'B4', 'C1', 'C2', 'C3', 'C4', 'D1', 'D2', 'D3','D4', 'E1', 'E2', 'E3', 'E4', 'F1', 'F2', 'F3', 'F4','G1', 'G2', 'G3','G4', 'H1', 'H2', 'H3', 'H4', 'I1','I2', 'I3', 'I4', 'J1', 'J2','J3', 'J4'];
-    
-    const randomSerial = Math.random(randomSeat)*40;
-    const index = Math.round(randomSerial);
-    const seat = randomSeat[index];
-    console.log(index, seat);
-    return seat;
-}
-
-function setBackgroundColor(elementId){
-    const element = document.getElementById(elementId);
-    element.classList.add('bg-green-400');
-    element.classList.add('text-white')
-}
-function removeBackgroundColor(elementId){
-    const element = document.getElementById(elementId);
-    element.classList.add('bg-green-400');
-    element.classList.add('text-white')
-}
+nextButton.addEventListener('click', function(){
+    successButton.classList.remove('hidden')
+})
 
 
 
-// function bookingSeat(){
-//     handleKeyEvent();
-// }
+
+
+
+
+
+
+
+
+
+
+
 
