@@ -90,7 +90,6 @@ function setSeatLeft(event, value){
         
 }
 
-
 const nextButton = document.getElementById('next-success');
 const successButton = document.getElementById('success-hidden');
 
@@ -101,6 +100,28 @@ nextButton.addEventListener('click', function(){
 
 
 
+
+
+// Coupon Section
+
+document.getElementById('text-show').addEventListener('keyup', 
+function(event){
+const text = event.target.value;
+
+
+const deleteButton = document.getElementById('apply-show');
+if(text === 'NEW15' || text === 'Couple 20'){
+deleteButton.removeAttribute('disabled');
+}
+else{
+deleteButton.setAttribute('disabled', true);
+}
+})
+document.getElementById('apply-show').addEventListener('click', function(){
+// console.log('First comment delete')
+const getHideButton = document.getElementById('hide-button');
+ getHideButton.classList.add('hidden');
+})
 
 
 

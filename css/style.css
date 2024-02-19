@@ -25,3 +25,18 @@ body{
     left:50%;
     transform: translate(-50%, -50%);
 }
+
+
+@media only  screen and (max-width:990px){
+    li{      
+        gap:100px;
+    }
+}
+
+
+@media only  screen and (max-width:600px){
+    li{      
+        gap:40px;
+    }
+}
+
